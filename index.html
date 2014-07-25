@@ -7,8 +7,41 @@
 <div id="header" style="background-color:#FFA500;">
 <h1 style="margin-bottom:0;">CardLock template page</h1></div>
 
+<div id="menu" style="background-color:#FFD700;height:200px;width:100px;float:left;">
+This is a test client for use with CardLock validation. Do not use for anything useful.
+</div>
+
+<div id="content" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+
+  <form id="paymentForm" method="post" action="https://api.paypoint.net/cardlock/fallback">
+    <input id="token" type="hidden" name="token" value="" />
+    <input id="pan" type="text" name="pan" value="" />
+    <input type="submit" name="go"/>
+    
+  </form>
 
 </div>
+
+
+
+
+</div>
+
+
+<script type="text/javascript" src="https://api.paypoint.net/cardlock/scripts/cardLock.js"></script>
+<script type="text/javascript">
+	var errorHandler = function( response ) {
+		alert( "Received a status " + response.status + " response, with message " + response.message );
+	};
+
+	new CardLock({
+		publishableId: '4f3c1471-dd93-4370-8ee4-b8107b5ff156',
+		formElementId: 'paymentForm',
+		panElementId: 'pan',
+		tokenElementId: 'token',
+		merchantAction: 'http://warmfusion.co.uk/paypoint-cardlock/payments/complete'
+	});
+</script>
 
 </body>
 </html>
